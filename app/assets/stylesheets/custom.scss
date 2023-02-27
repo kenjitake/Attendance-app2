@@ -1,2 +1,31 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+/* universal */
+
+ body {
+  padding-top: 50px;
+ }
+ 
+ .center {
+  text-align: center;
+ }
+ 
+ .center h1 {
+  margin-bottom: 10px;
+ }
+ 
+ 
+ /* header */
+ 
+ 
+ 
+ #logo {
+  font-size: 1.7em;
+  color: white;
+  padding-top: 10px;
+  font-weight: bold;
+ }
+ 
+ 
