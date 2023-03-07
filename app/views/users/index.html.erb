@@ -1,0 +1,21 @@
+<% provide(:title, 'ユーザ一覧') %>
+
+<h1>ユーザ一覧</h1>
+
+  <div class = "col-md">
+    <table class= "table table-condensed table-hover" id= "table-users">
+      <thead>
+        <tr>
+          <th>Example</th>
+        </tr>
+      </thead>
+      
+      <%= @users.each do |user| %>
+        <tr>
+          <td>
+          <%= link_to user.name, user %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
