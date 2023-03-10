@@ -1,29 +1,28 @@
 <% provide(:title, 'ユーザ一覧') %>
 
-<h1>ユーザ一覧</h1>
+<h1>全てのユーザー</h1>
   
   <div class = "col-md-12">
     <%= will_paginate %>
     <table class= "table table-condensed table-hover" id= "table-users">
-      <thead>
-        <tr>
-          <th>Example</th>
-          <th></th>
-        </tr>
-      </thead>
       
       <% @users.each do |user| %>
         <tr>
-          <td><%= link_to user.name, user %></td>
-          <td>
-            <% if current_user.admin? && !current_user?(user) %>
-              <%= link_to "削除", user, method: :delete,
-                data: { confirm: "削除してよろしいですか？"},
-                class: "btn btn-danger" %>
-            <% end %>
-          </td>
+          <% if current_user.admin? %>
+            <td><%= link_to user.name, user %> |
+              <%= link_to "基本情報編集", edit_basic_info_user_path(user), remote: true %> |
+              <% unless user.admin? %>
+                <%= link_to "削除", user, method: :delete, data: { confirm: "削除してよろしいですか？"} %>
+              <% end %>
+            </td>
+          <% else %>
+            <td><%= link_to user.name %></td>
+          <% end %>
         </tr>
       <% end %>
     </table>
     <%= will_paginate %>
   </div>
+  
+  <!--モーダルウインドウ表示-->
+<div id="edit-basic-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
