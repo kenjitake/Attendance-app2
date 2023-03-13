@@ -16,17 +16,6 @@
   margin-top: 10px;
 }
 
-#table-users {
-  td {
-    vertical-align: middle;
-  }
-}
-
-#table-profile {
-  td {
-    text-align: center;
-  }
-}
 
 .label-basic-info {
   margin-top: 5px;
@@ -36,3 +25,33 @@
   margin: 15px 0;
   width: 30%;
 }
+
+
+#table-users {
+  td {
+    vertical-align: middle;
+  }
+}
+
+/* ユーザー基本情報　*/
+
+#table-profile {
+  td {
+    text-align: center;
+  }
+}
+
+/*　ユーザー勤怠情報 */
+
+#table-attendances {
+  th {
+    vertical-align: middle;
+    text-align: center;
+  }
+  td {
+    vertical-align: middle;
+    text-align: center;
+  }
+}
+
+
