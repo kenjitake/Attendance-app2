@@ -5,16 +5,16 @@
   <table class= "table table-condensed table-bordered" id= "table-profile">
       <thead>
           <tr>
-              <td>時間管理表</td>
-              <td>指定勤務時間:<%= format_basic_info(@user.work_time) %></td>
-              <td>基本時間:<%= format_basic_info(@user.basic_time) %></td>
-              <td>初日</td>
+              <td><%= l(@first_day, format: :middle) %>  時間管理表</td>
+              <td>指定勤務時間  <%= format_basic_info(@user.work_time) %></td>
+              <td><%= format_basic_info(@user.basic_time) %>  基本時間 </td>
+              <td>初日  <%= l(@first_day, format: :short) %></td>
           </tr>
           <tr>
               <td><%= @user.department.present?? @user.department : "未所属" %></td>
-              <td>氏名<%= @user.name %></td>
-              <td>出勤日数</td>
-              <td>締め</td>
+              <td>氏名  <%= @user.name %></td>
+              <td>出勤日数 <%= @worked_sum %>日</td>
+              <td>締め <%= l(@last_day, format: :short) %></td>
           </tr>
       </thead>
   </table>
@@ -29,10 +29,12 @@
   <table class= "table table-bordered table-striped" id= "table-attendances">
     <thead>
       <tr>
-        <th>日付</th>
+        <th height= "100">日付</th>
         <th>曜日</th>
+        <th>a</th>
         <th>出社</th>
         <th>退社</th>
+        <th></th>
         <th>在社時間</th>
         <th>備考</th>
         <th>残業指示</th>
@@ -45,14 +47,41 @@
       <tr>
         <td><%= l(day.worked_on, format: :short) %></td>
         <td><%= $days_of_the_week[day.worked_on.wday] %></td>
+        <td>
+          <% if btn_text = attendance_state(day) %>
+            <%=link_to "#{btn_text}登録", user_attendance_path(@user, day),
+            method: :patch, class: "btn btn-primary btn-attendance" %>
+          <% end %>
+        </td>
+        <td><%= l(day.started_at, format: :time) if day.started_at.present? %></td>
+        <td><%= l(day.finished_at, format: :time) if day.finished_at.present? %></td>
         <td></td>
-        <td></td>
-        <td></td>
+        <td>
+          <% if day.started_at.present? && day.finished_at.present? %>
+            <%= str_times = working_times(day.started_at, day.finished_at) %>
+            <% @total_working_times = @total_working_times.to_f + str_times.to_f %>
+          <% end %>
+          
+        </td>
         <td></td>
         <td></td>
         <td></td>
       </tr>
       <% end %>
     </tbody>
+    
+    <tfoot>
+      <tr>
+        <td colspan= "2"></td>
+        <td colspan= "4"></td>
+        <td>在社時間合計
+          <%= @total_working_times %>
+        </td>
+        <td></td>
+        <td></td>
+        <td>所属長承認</td>
+      </tr>
+    </tfoot>
+    
   </table>
 </div>
