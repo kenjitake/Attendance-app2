@@ -1,4 +1,4 @@
-<% provide(:title, '@user.name') %>
+<% provide(:title, @user.name) %>
 <%= form_with(model: @user, url: attendances_update_one_month_user_path(date: @first_day), local: true, method: :patch) do |f| %>
   <div>
     <table class= "table table-condensed table-bordered", id= "table-attendances">
@@ -18,12 +18,16 @@
             <tr>
               <td><%= l(day.worked_on, format: :short) %></td>
               <td><%= $days_of_the_week[day.worked_on.wday] %></td>
-              <td><%= attendance.time_field :started_at, class: "form-control" %></td>
-              <td><%= attendance.time_field :finished_at, class: "form-control" %></td>
-              <td></td>
+              <td><%= attendance.time_field :started_at, class: "form-control form-time" %></td>
+              <td><%= attendance.time_field :finished_at, class: "form-control form-time" %></td>
+              <td>
+                <% if day.started_at.present? && day.finished_at.present? %>
+                  <%= working_times(day.started_at, day.finished_at) %>
+                <% end %>
+              </td>
               <td><%= attendance.text_field :note, class: "form-control" %></td>
-              <td></td>
-             <td></td>
+              <td><%= attendance.text_field :overtime_instraction, class: "form-control" %></td>
+             <td><%= attendance.text_field :instractor, class: "form-control" %></td>
             </tr>
           <% end %>
         <% end %>
@@ -32,6 +36,6 @@
   </div>
   <div class= "center">
     <%= link_to "キャンセル", user_path(date: @first_day), class: "btn btn-lg btn-default" %>
-    <%= f.submit "編集を保存する", class: "btn btn-lg btn-default" %>
+    <%= f.submit "編集を保存する", class: "btn btn-lg btn-primary" %>
   </div>
 <% end %>

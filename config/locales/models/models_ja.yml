@@ -20,5 +20,7 @@ ja:
         started_at: 出勤時刻
         finished_at: 退勤時刻
         note: 備考
+        overtime_instraction: 残業指示
+        instractor: 指示者
         user: ユーザーID
           

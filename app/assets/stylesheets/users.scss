@@ -33,6 +33,11 @@
   }
 }
 
+
+#btn-edit {
+  margin-bottom: 15px;
+}
+
 /* ユーザー基本情報　*/
 
 #table-profile {
@@ -54,7 +59,12 @@
   td {
     vertical-align: middle;
     text-align: center;
+    height: 100px;
   }
+}
+
+.form-time {
+  height: 60px;
 }
 
 
