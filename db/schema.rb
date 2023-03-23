@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20230320135736) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "overtime_instruction"
+    t.string "instructor"
     t.string "overtime_instraction"
     t.string "instractor"
     t.index ["user_id"], name: "index_attendances_on_user_id"

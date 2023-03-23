@@ -9,10 +9,9 @@
       <% @users.each do |user| %>
         <tr>
           <% if current_user.admin? %>
-            <td><%= link_to user.name, user %> |
-              <%= link_to "基本情報編集", edit_basic_info_user_path(user), remote: true %> |
+            <td><%= link_to user.name, user %> 
               <% unless user.admin? %>
-                <%= link_to "削除", user, method: :delete, data: { confirm: "削除してよろしいですか？"} %>
+               | <%= link_to "削除", user, method: :delete, data: { confirm: "削除してよろしいですか？"} %>
               <% end %>
             </td>
           <% else %>
@@ -24,5 +23,4 @@
     <%= will_paginate %>
   </div>
   
-  <!--モーダルウインドウ表示-->
-<div id="edit-basic-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+ 

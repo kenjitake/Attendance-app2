@@ -50,13 +50,15 @@ class UsersController < ApplicationController
   end
   
   def edit_basic_info
+
   end
   
   def update_basic_info
-    if @user.update_attributes(basic_info_params)
-      flash[:success]= "#{@user.name}の基本情報を更新しました"
+    @users= User.all
+    if @users.update(basic_info_params)
+      flash[:success]= "基本情報を更新しました"
     else
-      flash[:danger]= "#{@user.name}の更新に失敗しました。<br>" + @user.errors.full_messages.join("<br>")
+      flash[:danger]= "基本情報の更新に失敗しました。"
     end
       redirect_to users_url
   end
@@ -70,7 +72,7 @@ class UsersController < ApplicationController
     end
     
     def basic_info_params
-      params.require(:user).permit(:department,:basic_time,:work_time)
+      params.require(:user).permit(:basic_time,:work_time)
     end
     
     
