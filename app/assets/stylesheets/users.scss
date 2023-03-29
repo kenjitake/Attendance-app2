@@ -68,3 +68,45 @@
 }
 
 
+.index {
+  margin-top: 50px;
+}
+
+
+/*ユーザー検索バー  */
+
+.search {
+  float: right;
+}
+
+.search-form {
+  display: inline-block;
+  margin-right: 0;
+  margin-bottom: 20px;
+  height: 30px;
+  width: 200px;
+  font-size: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #ccc;
+  border-right: none;
+  
+}
+
+.search-form:focus {
+  border-color: skyblue;
+  outline: none;
+}
+
+
+.search-btn {
+  display: inline-block;
+  height: 30px;
+  width: 50px;
+  padding: 0 10px;
+  vertical-align: top;
+  border: none;
+  border-radius: 0 5px 5px 0;
+}
+

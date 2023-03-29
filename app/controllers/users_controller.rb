@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   before_action :set_user, only:[:show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
   before_action :logged_in_user, only:[:show, :index, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
   before_action :correct_user, only:[:edit, :update]
-  before_action :admin_user, only: [:destroy, :edit_basic_info, :update_basic_info]
+  before_action :admin_user, only: [:index, :destroy, :edit_basic_info, :update_basic_info]
+  before_action :admin_or_correct_user, only: [:show]
   before_action :set_one_month, only: :show
   
   def show
@@ -26,8 +27,17 @@ class UsersController < ApplicationController
     end  
   end
   
+  
   def index
-    @users = User.paginate(page: params[:page])
+    
+    if params[:q] && params[:q].reject { |key, value| value.blank? }.present?
+      @q = User.ransack(search_params, activated_true: true)
+      @title = "検索結果"
+    else
+      @q = User.ransack(activated_true: true)
+      @title = "全てのユーザー"
+    end
+    @users = @q.result.paginate(page: params[:page])
   end
   
   def edit
@@ -74,6 +84,15 @@ class UsersController < ApplicationController
     def basic_info_params
       params.require(:user).permit(:basic_time,:work_time)
     end
+    
+    
+    def search_params
+      params.require(:q).permit(:name_cont)
+    end
+    
+    #@q = User.ransack(params[:q])
+    #@users = @q.result(distinct: true).page(params[:page])
+   # @result = @q.result
     
     
 end

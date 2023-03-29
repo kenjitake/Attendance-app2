@@ -1,26 +1,31 @@
 <% provide(:title, 'ユーザ一覧') %>
 
-<h1>全てのユーザー</h1>
+
+<h1><%= @title %></h1>
   
   <div class = "col-md-12">
-    <%= will_paginate %>
-    <table class= "table table-condensed table-hover" id= "table-users">
+  <%= render 'search' %>
+    
+    <div class = "index">
+      <%= will_paginate %>
+      <table class= "table table-condensed table-hover" id= "table-users">
       
-      <% @users.each do |user| %>
-        <tr>
-          <% if current_user.admin? %>
-            <td><%= link_to user.name, user %> 
-              <% unless user.admin? %>
-               | <%= link_to "削除", user, method: :delete, data: { confirm: "削除してよろしいですか？"} %>
-              <% end %>
-            </td>
-          <% else %>
-            <td><%= link_to user.name %></td>
-          <% end %>
-        </tr>
-      <% end %>
-    </table>
-    <%= will_paginate %>
+        <% @users.each do |user| %>
+          <tr>
+            <% if current_user.admin? %>
+              <td><%= link_to user.name, user %> 
+                <% unless user.admin? %>
+                 | <%= link_to "削除", user, method: :delete, data: { confirm: "削除してよろしいですか？"} %>
+                <% end %>
+              </td>
+            <% else %>
+              <td><%= link_to user.name %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+      <%= will_paginate %>
+    </div>
   </div>
   
  

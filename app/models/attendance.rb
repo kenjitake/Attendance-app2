@@ -18,4 +18,6 @@ class Attendance < ApplicationRecord
       errors.add(:started_at, "より早い退勤打刻は無効です") if started_at > finished_at
     end
   end
+  
+
 end
