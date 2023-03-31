@@ -1,7 +1,7 @@
 # config: utf-8
 
 
-User.create!(name: "Sample User",
+User.create!(name: "代表",
              email: "sample@email.com",
              password: "password",
              password_confirmation: "password",

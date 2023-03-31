@@ -20,8 +20,6 @@ ActiveRecord::Schema.define(version: 20230320135736) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "overtime_instruction"
-    t.string "instructor"
     t.string "overtime_instraction"
     t.string "instractor"
     t.index ["user_id"], name: "index_attendances_on_user_id"
@@ -36,8 +34,8 @@ ActiveRecord::Schema.define(version: 20230320135736) do
     t.string "remember_digest"
     t.boolean "admin", default: false
     t.string "department"
-    t.datetime "work_time", default: "2023-03-09 22:30:00"
-    t.datetime "basic_time", default: "2023-03-09 23:00:00"
+    t.datetime "work_time", default: "2023-03-29 22:30:00"
+    t.datetime "basic_time", default: "2023-03-29 23:00:00"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

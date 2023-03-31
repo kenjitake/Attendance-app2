@@ -90,9 +90,7 @@ class UsersController < ApplicationController
       params.require(:q).permit(:name_cont)
     end
     
-    #@q = User.ransack(params[:q])
-    #@users = @q.result(distinct: true).page(params[:page])
-   # @result = @q.result
+    
     
     
 end
