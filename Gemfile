@@ -8,7 +8,6 @@ gem 'bcrypt'
 gem 'faker'
 gem 'ransack'
 gem 'rounding'
-gem 'sqlite3'
 gem 'bootstrap-sass'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
@@ -21,7 +20,7 @@ gem 'turbolinks',   '~> 5'
 gem 'jbuilder',     '~> 2.5'
 
 group :development, :test do
-  gem 'sqlite3'
+  gem 'sqlite3', '1.3.13'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
@@ -33,7 +32,7 @@ group :development do
 end
 
 group :production do
-  gem 'pg', '0.20.0'
+  gem 'pg', '>= 0.18', '< 2.0'
 end
 
 # Windows環境ではtzinfo-dataというgemを含める必要があります
