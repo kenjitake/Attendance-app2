@@ -8,12 +8,19 @@ class Attendance < ApplicationRecord
   validate:finished_at_is_invalid_without_a_started_at
   
   validate:finished_at_faster_than_started_at_is_invalid
+
+  
+  with_options if: -> { validation_context == :item } do
+    validates:started_at, presence: true
+    validates:finished_at, presence: true
+  end
   
   
   
   def finished_at_is_invalid_without_a_started_at
     errors.add(:started_at, "が必要です") if started_at.blank? && finished_at.present?
   end
+  
   
   def finished_at_faster_than_started_at_is_invalid
     if started_at.present? && finished_at.present?

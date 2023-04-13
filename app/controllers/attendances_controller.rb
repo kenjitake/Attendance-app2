@@ -5,7 +5,7 @@ class AttendancesController < ApplicationController
   before_action :admin_or_correct_user, only: [:edit_one_month, :update_one_month]
   
   
-  UPDATE_ERROR_MESSAGES= "勤怠登録に失敗しましt。やり直してください。"
+  UPDATE_ERROR_MESSAGES= "勤怠登録に失敗しました。やり直してください。"
   
   def update
     @user= User.find(params[:user_id])
@@ -35,6 +35,7 @@ class AttendancesController < ApplicationController
       attendance_params.each do |id, item|
         attendance = Attendance.find(id)
         attendance.update_attributes!(item)
+        attendance.save!(context: :item)
       end
     end
     flash[:success]= "勤怠情報を編集しました"
